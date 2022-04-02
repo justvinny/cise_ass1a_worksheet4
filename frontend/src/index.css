@@ -6,6 +6,9 @@ body {
 h1, h2, p, ul, li {
   font-family: sans-serif;
 }
+select {
+  margin: 8px 0px;
+}
 ul.header li {
   display: inline;
   list-style-type: none;
