@@ -1,5 +1,6 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
+import React, { useRef } from "react";
+import { BrowserRouter as Router, Routes, Route, NavLink, Navigate, useLocation } from "react-router-dom";
+import "./index.css"
 
 import Home from "./pages/Home";
 import SEPractice from "./pages/SE-Practice";
@@ -8,18 +9,18 @@ import NotFoundPage from "./pages/404";
 
 const App = () => {
   return (
-    <Router>
+    <Router >
       <div>
         <h1>Software Engineering Practice Evidence Repository (SEPER)</h1>
         <ul className="header">
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="/SEPractice">Select the Practice</Link>
+            <NavLink to="/SEPractice" >Select the Practice</NavLink>
           </li>
           <li>
-            <Link to="/SubmitArticle">Submit an Article</Link>
+            <NavLink to="/SubmitArticle" >Submit an Article</NavLink>
           </li>
         </ul>
         <div className="content">
