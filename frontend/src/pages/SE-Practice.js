@@ -1,4 +1,3 @@
-import data from "../dummydata/articles";
 import TableStyles from "../components/TableStyle";
 import Table from "../components/EvidenceTable";
 import TableColumns from "../components/TableColumns";
@@ -17,12 +16,21 @@ const SEPractice = () => {
       .catch((err) => console.err(`Failed to get articles: ${err.message}`));
   }, []);
 
+  const getArticles = () => {
+    switch (selectedPractice) {
+      case "Mob Programming":
+        return articles.filter(article => article.sepractice === "Mob Programming");
+      default:
+        return articles.filter(article => article.sepractice === "TDD");
+    }
+  }
+
   return (
     <div>
       <h2>Select SE Practice to get evidence for the claimed benefits</h2>
-      <Dropdown setSelectedPractice={setSelectedPractice}/>
+      <Dropdown setSelectedPractice={setSelectedPractice} />
       <TableStyles>
-        <Table selectedPractice={selectedPractice} data={articles} columns={TableColumns} />
+        <Table selectedPractice={selectedPractice} data={getArticles()} columns={TableColumns} />
       </TableStyles>
     </div>
   );
