@@ -33,6 +33,10 @@ const Table = ({ columns, data }) => {
     usePagination
   );
 
+  const getTablePage = () => {
+
+  }
+
   // Render Data Table UI
   return (
     <>
@@ -99,6 +103,7 @@ const Table = ({ columns, data }) => {
           <input
             type="number"
             defaultValue={pageIndex + 1}
+            min={1}
             onChange={(e) => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               gotoPage(page);
