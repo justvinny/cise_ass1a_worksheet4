@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Home from "./pages/Home";
 import SEPractice from "./pages/SE-Practice";
@@ -13,16 +13,23 @@ const App = () => {
         <h1>Software Engineering Practice Evidence Repository (SEPER)</h1>
         <ul className="header">
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/SEPractice">Select the Practice</a>
+            <Link to="/SEPractice">Select the Practice</Link>
           </li>
           <li>
-            <a href="/SubmitArticle">Submit an Article</a>
+            <Link to="/SubmitArticle">Submit an Article</Link>
           </li>
         </ul>
-        <div className="content"></div>
+        <div className="content">
+          <Switch>
+            <Route exact path="/"><Home /></Route>
+            <Route path="/SEPractice"><SEPractice /></Route>
+            <Route path="/SubmitArticle"><SubmitArticle /></Route>
+            <Route path="/NotFoundPage"><NotFoundPage /></Route>
+          </Switch>
+        </div>
       </div>
     </Router>
   );
