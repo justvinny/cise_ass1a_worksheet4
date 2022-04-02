@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
 
 import Home from "./pages/Home";
 import SEPractice from "./pages/SE-Practice";
@@ -23,12 +23,14 @@ const App = () => {
           </li>
         </ul>
         <div className="content">
-          <Switch>
-            <Route exact path="/"><Home /></Route>
-            <Route path="/SEPractice"><SEPractice /></Route>
-            <Route path="/SubmitArticle"><SubmitArticle /></Route>
-            <Route path="/NotFoundPage"><NotFoundPage /></Route>
-          </Switch>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/SEPractice" element={<SEPractice />} />
+            <Route path="/SubmitArticle" element={<SubmitArticle />} />
+            {/* All other paths should redirect to NotFoundPage */}
+            <Route exact path="404" element={<NotFoundPage />} />
+            <Route path="/*" element={<Navigate to="404" replace />} />
+          </Routes>
         </div>
       </div>
     </Router>
