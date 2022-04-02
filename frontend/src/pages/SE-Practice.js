@@ -3,14 +3,17 @@ import TableStyles from "../components/TableStyle";
 import Table from "../components/EvidenceTable";
 import TableColumns from "../components/TableColumns";
 import Dropdown from "../components/Dropdown";
+import { useState } from "react";
 
 const SEPractice = () => {
+  const [selectedPractice, setSelectedPractice] = useState("");
+
   return (
     <div>
       <h2>Select SE Practice to get evidence for the claimed benefits</h2>
-      <Dropdown />
+      <Dropdown setSelectedPractice={setSelectedPractice}/>
       <TableStyles>
-        <Table data={articles} columns={TableColumns} />
+        <Table selectedPractice={selectedPractice} data={articles} columns={TableColumns} />
       </TableStyles>
     </div>
   );

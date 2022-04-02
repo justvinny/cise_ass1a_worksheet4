@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import articles from "../dummydata/articles.js";
 import { useTable, useSortBy, usePagination } from "react-table";
 
-const Table = ({ columns, data }) => {
+const Table = ({ selectedPractice, columns, data }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -26,19 +26,16 @@ const Table = ({ columns, data }) => {
     {
       columns,
       data,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0, pageSize: 3 },
     },
 
     useSortBy,
     usePagination
   );
 
-  const getTablePage = () => {
+  console.log(pageSize);
 
-  }
-
-  // Render Data Table UI
-  return (
+  const displayTable = () => (
     <>
       <table {...getTableProps()}>
         <thead>
@@ -77,7 +74,6 @@ const Table = ({ columns, data }) => {
           })}
         </tbody>
       </table>
-
       {/* Pagination */}
       <div className="pagination">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
@@ -126,6 +122,28 @@ const Table = ({ columns, data }) => {
       </div>
     </>
   );
+
+  const displaySelectedTable = () => {
+    switch (selectedPractice) {
+      case "TDD":
+        return displayTable();
+      case "Mob programming":       
+       return (
+        <h3>
+            No articles found for Mob programming.
+        </h3>
+      );
+      default:
+        return (
+          <h3>
+            No table selected. Please select an SE Practice from the dropdown.
+          </h3>
+        );
+    }
+  };
+
+  // Render Data Table UI
+  return <>{displaySelectedTable()}</>;
 };
 
 export default Table;
