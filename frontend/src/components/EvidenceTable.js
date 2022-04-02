@@ -33,8 +33,6 @@ const Table = ({ selectedPractice, columns, data }) => {
     usePagination
   );
 
-  console.log(pageSize);
-
   const displayTable = () => (
     <>
       <table {...getTableProps()}>
@@ -127,10 +125,10 @@ const Table = ({ selectedPractice, columns, data }) => {
     switch (selectedPractice) {
       case "TDD":
         return displayTable();
-      case "Mob programming":       
+      case "Mob Programming":       
        return (
         <h3>
-            No articles found for Mob programming.
+            No articles found for Mob Programming.
         </h3>
       );
       default:

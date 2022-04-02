@@ -7,7 +7,8 @@ const articleSchema = new mongoose.Schema({
     pubyear: Number,
     doi: String,
     claim: String,
-    evidence: String
+    evidence: String,
+    sepractice: String
 });
 
 const Article = mongoose.model("Article", articleSchema);

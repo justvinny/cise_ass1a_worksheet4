@@ -1,12 +1,21 @@
-import articles from "../dummydata/articles";
+import data from "../dummydata/articles";
 import TableStyles from "../components/TableStyle";
 import Table from "../components/EvidenceTable";
 import TableColumns from "../components/TableColumns";
 import Dropdown from "../components/Dropdown";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getAllArticles } from "../services/articleservice";
 
 const SEPractice = () => {
   const [selectedPractice, setSelectedPractice] = useState("");
+  const [articles, setArticles] = useState([]);
+
+  // Grab articles from MongoDB Atlas
+  useEffect(() => {
+    getAllArticles()
+      .then(articles => setArticles(articles))
+      .catch((err) => console.err(`Failed to get articles: ${err.message}`));
+  }, []);
 
   return (
     <div>

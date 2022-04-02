@@ -6,10 +6,7 @@ const Article = require("../models/Article");
 router.get("/", (req, res) => {
     Article
         .find()
-        .then((articles) => {
-            console.log(articles);
-            return res.json(articles)
-        })
+        .then((articles) => res.json(articles))
         .catch(() => res.status(404).json({ noArticlesFound: "No Articles found" }));
 });
 

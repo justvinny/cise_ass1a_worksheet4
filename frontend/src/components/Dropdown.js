@@ -1,11 +1,18 @@
-import { useRef } from "react";
-import SEPractices from "../dummydata/SEPractices";
-
-const optionItems = SEPractices.map((SEPractice) => (
-  <option key={SEPractice.practice}>{SEPractice.practice}</option>
-));
+import { useEffect, useState } from "react";
+import { getAllPractices } from "../services/practiceservice";
 
 const Dropdown = ({ setSelectedPractice }) => {
+  const [practices, setPractices] = useState([]);
+
+  useEffect(() => {
+    getAllPractices().then((practices) => setPractices(practices));
+  }, []);
+
+  const renderPracticeItems = (SEPractices) =>
+    SEPractices.map((SEPractice) => (
+      <option key={SEPractice._id}>{SEPractice.practice}</option>
+    ));
+
   const handleDropdownChange = (e) => {
     setSelectedPractice(e.target.value);
   };
@@ -14,7 +21,7 @@ const Dropdown = ({ setSelectedPractice }) => {
     <div>
       <select onChange={handleDropdownChange}>
         <option value="">Select an SE Practice</option>
-        {optionItems}
+        {renderPracticeItems(practices)}
       </select>
     </div>
   );
