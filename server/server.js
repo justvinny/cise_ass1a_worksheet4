@@ -4,7 +4,6 @@ const cors = require("cors");
 const path = require("path");
 const app = express();
 
-
 const connectDb = require("./database/mongodb");
 const articles = require("./routes/articles");
 const practices = require("./routes/practices");
